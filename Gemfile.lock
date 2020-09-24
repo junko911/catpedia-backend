@@ -166,11 +166,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
-<<<<<<< HEAD
   faraday
-=======
   jwt (~> 2.2)
->>>>>>> 18ea163c05d8d3c8d2d0471d1b83a09f2cacd463
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
