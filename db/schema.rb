@@ -10,41 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_160000) do
+ActiveRecord::Schema.define(version: 2020_09_24_154941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "breeds", force: :cascade do |t|
-    t.string "name"
-    t.string "temperament"
-    t.string "life_span"
-    t.string "wikipedia_url"
-    t.string "origin"
-    t.boolean "rare"
-    t.boolean "hypoallergenic"
-    t.integer "child_friendly"
-    t.integer "dog_friendly"
-    t.integer "energy_level"
-    t.integer "intelligence"
-    t.integer "shedding_level"
-    t.integer "social_needs"
-    t.integer "stranger_friendly"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "cats", force: :cascade do |t|
     t.string "image"
-    t.string "category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "avatar"
+    t.string "cat_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
