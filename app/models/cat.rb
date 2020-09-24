@@ -9,7 +9,6 @@ class Cat < ApplicationRecord
       api_url = "https://api.thecatapi.com/v1/images/search?limit=#{limit}"
     end
 
-    byebug
     response = Faraday.get api_url
     result = JSON.parse(response.body)
   end
