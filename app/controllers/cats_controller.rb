@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+  skip_before_action :authorized
+
+
   def index
     category_id = params[:category_id].present? ? params[:category_id].to_i : nil
     breed_id = params[:breed_id].present? ? params[:breed_id] : nil
