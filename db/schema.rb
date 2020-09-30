@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_215905) do
   enable_extension "plpgsql"
 
   create_table "cats", force: :cascade do |t|
-    t.string "image"
-    t.string "cat_id"
+    t.string "url"
+    t.string "api_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

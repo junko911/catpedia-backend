@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :authorized, only: [:cat_fav, :user_fav]
+  before_action :authorized, only: [:cat_fav, :user_favs]
 
 
   def index
@@ -10,7 +10,8 @@ class CatsController < ApplicationController
   end
 
   def user_favs
-
+    favorite_cats = @user.cats
+    render json: favorite_cats.to_json
   end
 
   def create
@@ -27,8 +28,13 @@ class CatsController < ApplicationController
   end
 
   def cat_fav
-    Cat.create(cat_params)
-    Like.create(cat_id: cat_params[:cat_id], user_id: @user.id)
+    make_cat = Cat.create(cat_params)
+    if make_cat.valid?
+      Like.create(cat_id: make_cat.id, user_id: @user.id)
+    else
+      found_cat = Cat.find_by(api_id: cat_params[:api_id])
+      Like.create(cat_id: found_cat.id, user_id: @user.id)
+    end
   end
 
   def categories
@@ -40,5 +46,5 @@ end
 private
 
 def cat_params
-  params.require(:cat).permit(:image, :cat_id)
+  params.require(:cat).permit(:url, :api_id)
 end
