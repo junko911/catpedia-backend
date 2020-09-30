@@ -23,9 +23,15 @@ class Api::V1::UsersController < ApplicationController
       end
       render json: users
     end
-   
+  
+    def follow
+      user = User.find(params[:id])
+      follow = Relationship.create(follower: user, followed: current_user)
+      render json: follow
+    end
+
     private
-   
+  
     def user_params
       params.require(:user).permit(:username, :password, :avatar)
     end
