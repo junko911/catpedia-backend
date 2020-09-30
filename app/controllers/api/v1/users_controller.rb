@@ -30,6 +30,13 @@ class Api::V1::UsersController < ApplicationController
       render json: follow
     end
 
+    def unfollow
+      user = User.find(params[:id])
+      relationship = Relationship.find_by(follower: user, followed: current_user)
+      relationship.destroy
+      render json: unfollow
+    end
+
     private
   
     def user_params
