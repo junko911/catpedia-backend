@@ -16,7 +16,11 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def index
-      users = User.all.filter{|user| user.id != current_user.id}
+      if current_user
+        users = User.all.filter{|user| user.id != current_user.id}
+      else
+        users = User.all
+      end
       render json: users
     end
    
