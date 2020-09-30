@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  skip_before_action :authorized
+  before_action :authorized, only: [:cat_fav, :user_favs]
 
 
   def index
@@ -7,6 +7,11 @@ class CatsController < ApplicationController
     breed_id = params[:breed_id].present? ? params[:breed_id] : nil
     cats = Cat.search(category_id, breed_id)
     render json: cats
+  end
+
+  def user_favs
+    favorite_cats = @user.cats
+    render json: favorite_cats.to_json
   end
 
   def create
@@ -22,8 +27,24 @@ class CatsController < ApplicationController
     render json: { url: "http://localhost:3000/uploads/#{name}" }
   end
 
+  def cat_fav
+    make_cat = Cat.create(cat_params)
+    if make_cat.valid?
+      Like.create(cat_id: make_cat.id, user_id: @user.id)
+    else
+      found_cat = Cat.find_by(api_id: cat_params[:api_id])
+      Like.create(cat_id: found_cat.id, user_id: @user.id)
+    end
+  end
+
   def categories
     categories = Cat.categories
     render json: categories
   end
+end
+
+private
+
+def cat_params
+  params.require(:cat).permit(:url, :api_id)
 end
