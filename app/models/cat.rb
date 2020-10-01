@@ -2,6 +2,7 @@ class Cat < ApplicationRecord
   has_many :likes
   has_many :users, through: :likes
   validates :url, uniqueness: true
+  
   def self.search(category_id=nil, breed_id=nil)
     limit = 10
     if category_id
