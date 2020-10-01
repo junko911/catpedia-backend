@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :cats
       resources :breeds
       resources :users, only: [:create, :index]
       post '/login', to: 'auth#create'
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
   end
   
   resources :likes
-  resources :cats
   
   get '/categories', to: 'cats#categories'
   post '/cat_fav', to: 'cats#cat_fav'

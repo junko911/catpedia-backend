@@ -1,6 +1,5 @@
-class CatsController < ApplicationController
+class Api::V1::CatsController < ApplicationController
   before_action :authorized, only: [:cat_fav, :user_favs]
-
 
   def index
     category_id = params[:category_id].present? ? params[:category_id].to_i : nil
