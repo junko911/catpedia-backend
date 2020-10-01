@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
       user = User.find(params[:id])
       relationship = Relationship.find_by(follower: user, followed: current_user)
       relationship.destroy
-      render json: unfollow
+      render json: {}
     end
 
     private
