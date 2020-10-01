@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :index]
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
+      get '/categories', to: 'cats#categories'
+      post '/cat_fav', to: 'cats#cat_fav'
+      get '/user_favs', to: 'cats#user_favs'
       resources :users do
         member do
           post 'follow'
@@ -17,8 +20,5 @@ Rails.application.routes.draw do
   end
   
   
-  get '/categories', to: 'cats#categories'
-  post '/cat_fav', to: 'cats#cat_fav'
-  get '/user_favs', to: 'cats#user_favs'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
