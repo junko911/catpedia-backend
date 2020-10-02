@@ -15,14 +15,13 @@ class Api::V1::CatsController < ApplicationController
 
   def create
     name = params[:file].original_filename
-
     name = "#{rand(1000..9999)}_#{name}"
 
     path = File.join("public", "uploads", name)
     File.open(path, "wb") { |f| f.write(params[:file].read) }
 
-    cat = Cat.create(image: "http://localhost:3000/uploads/#{name}")
-    Like.create(cat: cat, user: @user)
+    cat = Cat.create(url: "http://localhost:3000/uploads/#{name}", api_id: name.split('.')[0])
+    Like.create(cat: cat, user: current_user)
 
     render json: { url: "http://localhost:3000/uploads/#{name}" }
   end
