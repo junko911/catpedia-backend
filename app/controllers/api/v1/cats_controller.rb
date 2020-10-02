@@ -43,3 +43,5 @@ private
 def cat_params
   params.require(:cat).permit(:url, :api_id)
 end
+
+
