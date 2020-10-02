@@ -21,6 +21,19 @@ class Api::V1::UsersController < ApplicationController
       end
     end
 
+    def update
+      name = params[:avatar].original_filename
+      name = "#{rand(1000..9999)}_#{name}"
+
+      path = File.join("public", "uploads", name)
+      File.open(path, "wb") { |f| f.write(params[:avatar].read) }
+
+      user = User.find(params[:id])
+      user.update(avatar: "http://localhost:3000/uploads/#{name}")
+      user.save
+      render json: user
+    end
+
     def index
       if current_user
         users = User.all.filter{|user| user.id != current_user.id}

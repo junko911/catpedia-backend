@@ -20,8 +20,4 @@ class Api::V1::AuthController < ApplicationController
     # params { user: {username: 'Chandler Bing', password: 'hi' } }
     params.require(:user).permit(:username, :password)
   end
-
-
-
-
 end
