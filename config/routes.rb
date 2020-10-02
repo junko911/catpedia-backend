@@ -10,8 +10,10 @@ Rails.application.routes.draw do
       get '/categories', to: 'cats#categories'
       post '/cat_fav', to: 'cats#cat_fav'
       get '/user_favs', to: 'cats#user_favs'
+      # get 'users/:id/cats', to: 'users#cats'
       resources :users do
         member do
+          get 'cats'
           post 'follow'
           delete 'unfollow'
         end

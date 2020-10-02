@@ -1,8 +1,14 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: [:create, :cats, :index]
    
     def profile
       render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    end
+
+    def cats
+      @user= User.find(id_params)
+      user_cats= @user.cats
+      render json: user_cats
     end
    
     def create
@@ -42,4 +48,9 @@ class Api::V1::UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :name, :bio, :password, :avatar)
     end
+
+    def id_params
+      params.require(:id)
+    end
+
   end
