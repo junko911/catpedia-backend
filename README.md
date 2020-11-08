@@ -1,24 +1,20 @@
-# README
+# Catpedia 🐈
+![screenshot](./screenshot.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About
+Cat Encyclopedia where users can find and upload cat images, and get information about cat breeds.
 
-Things you may want to cover:
+Key features:
 
-* Ruby version
+* create an account and follow other users.
+* find random cat images.
+* save favorite images and see other users' favorites.
+* upload cat images.
+* select cat breed and see the details of the breed.
 
-* System dependencies
+## Technologies and stack
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Frontend: React, Reactstrap
+* Backend: Ruby/Ruby on Rails
+* Database: Postgresql
+* External API: TheCatAPI(https://thecatapi.com/)
